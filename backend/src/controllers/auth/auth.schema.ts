@@ -6,7 +6,7 @@ const passwordSchema = z.string().min(6).max(20);
 
 export const loginSchema = z.object({
     email: emailSchema,
-    password: passwordSchema,
+    password: passwordSchema,   
     userAgent: z.string().optional(),
 });
 

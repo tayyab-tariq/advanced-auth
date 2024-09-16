@@ -6,8 +6,14 @@ import { verifyToken } from "../utils/jwt";
 import catchErrors from "../utils/catchErrors";
 import { Request, Response, NextFunction } from "express";
 
+interface AuthRequest extends Request {
+    userId?: string;  // Marked as optional in case it's missing
+    sessionId?: string;
+}
+
+
 // wrap with catchErrors() if you need this to be async
-const authenticate: RequestHandler = catchErrors( async (req: Request, res: Response, next: NextFunction) => {
+const authenticate: RequestHandler = catchErrors( async (req: AuthRequest, res: Response, next: NextFunction) => {
   const accessToken = req.cookies.accessToken as string | undefined;
   appAssert(
     accessToken,
@@ -24,8 +30,8 @@ const authenticate: RequestHandler = catchErrors( async (req: Request, res: Resp
     AppErrorCode.InvalidAccessToken
   );
 
-  req.userId = payload.userId;
-  req.sessionId = payload.sessionId;
+  req.userId = payload.userId as string | undefined;
+  req.sessionId = payload.sessionId as string | undefined;
   next();
 });
 

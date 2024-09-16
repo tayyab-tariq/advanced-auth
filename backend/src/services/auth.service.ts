@@ -1,4 +1,4 @@
-import { CONFLICT } from "../constants/http";
+import { CONFLICT, UNAUTHORIZED } from "../constants/http";
 import SessionModel from "../models/session.model";
 import UserModel from "../models/user.model";
 import appAssert from "../utils/appAssert";
@@ -47,3 +47,23 @@ export const createAccount = async (data: CreateAccountParams) => {
         refreshToken
     };
 };
+
+
+type LoginParams = {
+    email: string;
+    password: string;
+    userAgent?: string;
+};
+
+export const loginUser = async ({
+    email,
+    password,
+    userAgent
+}: LoginParams) => {
+    const user = await UserModel.findOne({ email });
+    appAssert(user, UNAUTHORIZED, 'Invalid email or password');
+    
+    return {
+        user: user?.omitPassword()
+    };
+}

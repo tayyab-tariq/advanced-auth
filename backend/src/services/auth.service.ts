@@ -134,3 +134,7 @@ export const refreshUserAccessToken = async(refreshToken: string) => {
     };
 
 };
+
+export const verifyEmail = async (token: string) => {
+    // const validCode = 
+};

@@ -64,3 +64,11 @@ export const refreshHandler = catchErrors(async (req, res) => {
     .cookie("accessToken", accessToken, getAccessTokenCookieOptions())
     .json({ message: "Access token refreshed" });
 });
+
+export const verifyEmailHandler = catchErrors(async (req, res) => {
+    const { token } = req.params;
+    
+        
+    return res.status(OK).json({ message: "Email verified successfully" });
+    
+});

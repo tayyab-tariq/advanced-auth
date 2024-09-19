@@ -17,7 +17,7 @@ export const registerSchema = loginSchema.extend({
     path: ['confirmPassword'],
 });
 
-export const verifyEmailCodeSchema = z.string().min(6).max(6);
+export const verifyEmailCodeSchema = z.string().min(6).max(24);
 
 export const resetPasswordSchema = z.object({
     password: passwordSchema,

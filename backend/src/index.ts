@@ -1,8 +1,9 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from 'cookie-parser';
+import helmet from "helmet";
 import errorHandler from './middleware/errorHandler';
-import { PORT, NODE_ENV } from './constants/env';
+import { PORT, NODE_ENV, APP_ORIGIN } from './constants/env';
 import connectToDatabase from "./config/db";
 import authRoutes from "./routes/auth.route";
 import userRoutes from "./routes/user.route";
@@ -11,10 +12,11 @@ import authenticate from "./middleware/authenticate";
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(helmet());
 
 app.use(
     cors({
-        origin: 'local',
+        origin: APP_ORIGIN,
         credentials: true,
     })
 );

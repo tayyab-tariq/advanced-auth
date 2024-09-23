@@ -14,7 +14,7 @@ interface AuthRequest extends Request {
 
 // wrap with catchErrors() if you need this to be async
 const authenticate: RequestHandler = catchErrors( async (req: AuthRequest, res: Response, next: NextFunction) => {
-  const accessToken = req.cookies.accessToken as string | undefined;
+  const accessToken = req.cookies.accessToken as string | undefined
   appAssert(
     accessToken,
     UNAUTHORIZED,

@@ -9,6 +9,7 @@ import authRoutes from "./routes/auth.route";
 import userRoutes from "./routes/user.route";
 import authenticate from "./middleware/authenticate";
 import { fileURLToPath } from 'url';
+import notFound from "./middleware/notFound";
 const path = require('path');
 
 const app = express();
@@ -23,10 +24,10 @@ app.use(
     })
 );
 
-// app.use(
-//     "/assets/userAvatars",
-//     express.static(__dirname + "/assets/userAvatars")
-// );
+app.use(
+    "/assets/userAvatars",
+    express.static(__dirname + "/assets/userAvatars")
+);
 
 app.use(cookieParser());
 
@@ -44,6 +45,8 @@ app.use("/user", authenticate, userRoutes);
 
 // error handler
 app.use(errorHandler);
+app.use(notFound);
+
 
 app.listen(PORT, async () => {
     console.log(`Server listening on port ${PORT} in ${NODE_ENV} environment`);

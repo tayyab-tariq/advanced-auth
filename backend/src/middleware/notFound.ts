@@ -5,6 +5,7 @@ const notFound = (req: Request, res: Response, next: NextFunction) => {
     const error = new Error(`Not Found - ${req.originalUrl}`);
     res.status(NOT_FOUND);
     return res.json({
+        error,
         message: error.message,
     });
 }

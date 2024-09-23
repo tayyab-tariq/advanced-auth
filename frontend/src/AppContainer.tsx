@@ -48,7 +48,7 @@ function AppContainer() {
     return (
         <Provider store={store}>
             <Helmet>
-                <title>{getTitleFromRoute(location.pathname)}</title>
+                {/* <title>{getTitleFromRoute(location.pathname)}</title> */}
             </Helmet>
             <App />
         </Provider>

@@ -8,6 +8,8 @@ import connectToDatabase from "./config/db";
 import authRoutes from "./routes/auth.route";
 import userRoutes from "./routes/user.route";
 import authenticate from "./middleware/authenticate";
+import { fileURLToPath } from 'url';
+const path = require('path');
 
 const app = express();
 app.use(express.json());
@@ -20,6 +22,11 @@ app.use(
         credentials: true,
     })
 );
+
+// app.use(
+//     "/assets/userAvatars",
+//     express.static(__dirname + "/assets/userAvatars")
+// );
 
 app.use(cookieParser());
 

@@ -1,26 +1,17 @@
 const titleMap = {
     "/": "News Feed",
-    "/home": "News Feed",
+    "/home": "Home",
     "/signin": "Sign In",
     "/signup": "Sign Up",
     "/profile": "User Profile",
-    "/saved": "Saved Posts",
-    "/edit-profile": "Edit Profile",
-    "/communities": "Communities",
-    "/my-communities": "My Communities",
-    "/following": "Following",
-    "/devices-locations": "Devices & Locations",
-    "/verify-email": "Verify Email",
-    "/email-verified": "Email Verified",
-    "/block-device": "Block Device",
-    "/login-verified": "Login Verified",
-  };
+};
+
   /**
    * Returns the title of a page based on its route path.
    * @param {string} path - The path of the page route.
    * @returns {string} The title of the page with the site name appended.
    */
-  export const getTitleFromRoute = (path) => {
+  export const getTitleFromRoute = (path: string) => {
     if (titleMap[path]) {
       return `${titleMap[path]} | SocioPedia`;
     }
